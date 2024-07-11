@@ -5,6 +5,7 @@ import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.expansion.Version;
 import me.clip.placeholderapi.expansion.VersionSpecific;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -22,6 +23,7 @@ public class AttributeExpansion extends PlaceholderExpansion implements VersionS
 
     private final Map<String, Attribute> attributes = new HashMap<>();
     private final List<String> placeholders = new ArrayList<>();
+    private static final Logger logger = Bukkit.getLogger();
 
     public AttributeExpansion() {
         for (final Attribute attribute : Attribute.values()) {
@@ -72,7 +74,7 @@ public class AttributeExpansion extends PlaceholderExpansion implements VersionS
     @Override
     public boolean isCompatibleWith(Version version) {
         if (ServerVersion.HAS_ATTRIBUTES) {
-            log(Level.INFO, "Available attributes: " + String.join(", ", attributes.keySet()));
+            logger.log(Level.INFO, "Available attributes: " + String.join(", ", attributes.keySet()));
         }
 
         return ServerVersion.HAS_ATTRIBUTES;
